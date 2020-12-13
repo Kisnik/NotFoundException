@@ -24,27 +24,27 @@ public class ProductRepository {
 
     public void removeById(int id) {
 
-            Product prod = findById(id);
-            if (prod ==null) {
-                throw new NotFoundException("Element with id: " + id + " not found");
+        Product prod = findById(id);
+        if (prod == null) {
+            throw new NotFoundException("Element with id: " + id + " not found");
+        }
+        int length = products.length - 1;
+        Product[] tmp = new Product[length];
+        int index = 0;
+        for (Product item : products) {
+            if (item.getId() != id) {
+                tmp[index] = item;
+                index++;
             }
-            int length = products.length - 1;
-            Product[] tmp = new Product[length];
-            int index = 0;
-            for (Product item : products) {
-                if (item.getId() != id) {
-                    tmp[index] = item;
-                    index++;
-                }
-            }
-            products = tmp;
+        }
+        products = tmp;
 
 
     }
 
     public Product findById(int id) {
-        for (Product item:products) {
-            if (item.getId()==id) {
+        for (Product item : products) {
+            if (item.getId() == id) {
                 return item;
             }
         }
